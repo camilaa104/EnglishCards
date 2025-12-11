@@ -15,7 +15,7 @@ public class CardsManager{
    
    
    /* crear el agregar, tambien el metdo de buscar por referencia,
-   para editar y eliminar, y no se omo gestionar que editar depende de la categoria, 
+   para editar y eliminar, y no se como gestionar que editar depende de la categoria, 
    yo creo que tocara mas bien que entren dos numeros, uno se refiere al tipo de tarjeta, 
    el otro al atributo y ahi se decide con ifs y se llama al  mismo método o si se hacen mas metodos pues
    que sean metodos internos */

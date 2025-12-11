@@ -8,7 +8,7 @@ public class Vocabulary extends Card{
     private String significado;
     private String ejemplo;
     private String tag; //hacer Enum
-    private String nivel; //hacer Enum
+    private String nivel; //hacer Enum, A1, A2, B1, B2
     
     public Vocabulary(int referencia, String categoria, String palabra, String traduccion, String significado, String ejemplo, String tag, String nivel){
         super(referencia);
