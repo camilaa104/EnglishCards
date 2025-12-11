@@ -1,0 +1,15 @@
+package english_cards;
+
+public class Grammar extends Card{
+    private String categoria;
+    private String frase;
+    private String respuesta;
+    private String explicacion;
+    private String nivel;
+    private String tag;
+    
+    public Grammar(int referencia, String frase, String respuesta, String explicacion, String nivel, String tag) {
+        super(referencia);
+    }
+    
+}
