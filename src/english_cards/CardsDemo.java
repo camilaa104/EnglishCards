@@ -6,5 +6,4 @@ public class CardsDemo {
         System.out.println("Dios mio, ojala");
         System.out.println("hola");
     }
-    
 }

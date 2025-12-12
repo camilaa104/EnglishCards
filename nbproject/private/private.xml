@@ -3,7 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/EQUIPO/OneDrive/Documents/NetBeansProjects/English_Cards/src/english_cards/English_Cards.java</file>
+            <file>file:/C:/Users/EQUIPO/OneDrive/Documents/NetBeansProjects/English_Cards/src/english_cards/CardsDemo.java</file>
+            <file>file:/C:/Users/EQUIPO/OneDrive/Documents/NetBeansProjects/English_Cards/src/english_cards/Card.java</file>
+            <file>file:/C:/Users/EQUIPO/OneDrive/Documents/NetBeansProjects/English_Cards/src/english_cards/CardsManager.java</file>
+            <file>file:/C:/Users/EQUIPO/OneDrive/Documents/NetBeansProjects/English_Cards/src/english_cards/Grammar.java</file>
+            <file>file:/C:/Users/EQUIPO/OneDrive/Documents/NetBeansProjects/English_Cards/src/english_cards/PhrasalVerb.java</file>
+            <file>file:/C:/Users/EQUIPO/OneDrive/Documents/NetBeansProjects/English_Cards/src/english_cards/Vocabulary.java</file>
         </group>
     </open-files>
 </project-private>
