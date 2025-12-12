@@ -11,8 +11,8 @@ public class PhrasalVerb extends Card{
     private String significado;
     private String ejemplo;
     
-    public PhrasalVerb(int referencia) {
-        super(referencia);
+    public PhrasalVerb(int reference, Level level, String clue) {
+        super(reference, level, clue);
     }
     
 }
