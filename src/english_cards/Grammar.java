@@ -1,15 +1,63 @@
 package english_cards;
 
 public class Grammar extends Card{
-    private String categoria;
-    private String nivel; //hacer Enum, A1, A2, B1, B2
-    private String tag;
-    private String frase;
-    private String respuesta;
-    private String explicacion;
-    
-    public Grammar(int referencia, String frase, String respuesta, String explicacion, String nivel, String tag) {
-        super(referencia);
+    private GrammarCategory category;
+    private String phrase;
+    private String answer;
+    private String explanation;
+
+    public Grammar(int reference, Level level, String clue, 
+            GrammarCategory category, String phrase, 
+            String answer, String explanation) {
+        
+        super(reference, level, clue);
+        this.category = category;
+        this.phrase = phrase;
+        this.answer = answer;
+        this.explanation = explanation;
     }
     
+    @Override 
+    public String toString(){
+        return super.toString()+":"+this.category+":"+this.phrase+":"+
+                this.answer+":"+this.explanation;
+    }
+     /*escribir 2 metodos para imprimir la informacion, uno para el 
+    modo quiz y uno para listar*/
+    
+    public GrammarCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(GrammarCategory category) {
+        this.category = category;
+    }
+
+    public String getPhrase() {
+        return phrase;
+    }
+
+    public void setPhrase(String phrase) {
+        this.phrase = phrase;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    public String getExplanation() {
+        return explanation;
+    }
+
+    public void setExplanation(String explanation) {
+        this.explanation = explanation;
+    }
+    
+    
 }
+    
+
