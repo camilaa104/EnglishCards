@@ -8,12 +8,21 @@ public class CardsManager{
    private final List<Card> tarjetas;
    private int contador;
    
-   public CardsManager(){
+    public CardsManager(){
        this.tarjetas = new ArrayList();
        this.contador = 0;   
-   }
-   
-   
+    }
+    
+    public static List<Card> leerCartas(){
+        ArrayList cartas = new ArrayList();
+        try {
+            
+        } catch(Exception e){
+            System.out.println(e.toString());
+        }
+        
+        return cartas;
+    }
    /* crear el agregar, tambien el metodo de buscar por referencia,
    para editar y eliminar, y no se como gestionar que editar depende de la categoria, 
    yo creo que tocara mas bien que entren dos numeros, uno se refiere al tipo de tarjeta, 
