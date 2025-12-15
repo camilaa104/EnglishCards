@@ -18,7 +18,10 @@ public class CardsDemo {
                 entrada.nextLine();
                 switch(agregar){
                     case 1: //Grammar
-                        System.out.println("aaaaaa"); // Aqui agregas el Enum de categorias
+                        System.out.println("Seleccione el numero de la categoria de gramatica que desea agregar");
+                        for(int i=1; i<=18;i++){
+                            System.out.println(i+" "+GrammarCategory.fromCode(i));
+                        }
                         int categoriaG = entrada.nextInt();
                         entrada.nextLine();
                         System.out.println("Escribe la frase: ");
@@ -27,14 +30,20 @@ public class CardsDemo {
                         String respuestaG = entrada.nextLine();
                         System.out.println("Escribe la explicacion: ");
                         String explicacionG = entrada.nextLine();
-                        System.out.println("Escribe el nivel: ");
+                        System.out.println("Selecciona el numero del nivel que deseas agregar");
+                        for(int i=1; i<=6; i++){
+                            System.out.println(i+" "+Level.fromCode(i));
+                        }
                         String nivelG = entrada.nextLine();
                         System.out.println("Escribe la pista: ");
                         String pistaG = entrada.nextLine();
                         //Mnadarlo al documento Grammar
                         break;
                     case 2: // Vocabulary
-                        System.out.println(""); // Aqui agregas el Enum de categorias
+                        System.out.println("Seleccione el numero de la categoria que desea agregar");
+                        for(int i=1; i<=10; i++){
+                            System.out.println(i+" "+VocabularyCategory.fromCode(i));
+                        }
                         int categoriaV = entrada.nextInt();
                         entrada.nextLine();
                         System.out.println("Escribe la frase: ");
@@ -43,10 +52,26 @@ public class CardsDemo {
                         String respuestaV = entrada.nextLine();
                         System.out.println("Escribe la explicacion: ");
                         String explicacionV = entrada.nextLine();
-                        System.out.println("Escribe el nivel: ");
-                        String nivelV = entrada.nextLine();
                         System.out.println("Escribe la pista: ");
                         String pistaV = entrada.nextLine();
+                        System.out.println("Seleccione el numero del nivel que desea agregar");
+                        for(int i=1; i<6; i++){
+                            System.out.println(i+" "+Level.fromCode(i));
+                        }
+                        int nivelV = entrada.nextInt();
+                        entrada.nextLine();
+                        System.out.println("Sleccione el numero del tag general que desea agregar");
+                        for(int i=1; i<6; i++){
+                            System.out.println(i+" "+UseTag.fromCode(i));
+                        }
+                        int useTag = entrada.nextInt();
+                        entrada.nextLine();
+                        System.out.println("Seleccione el numero del tag especifico que desea agregar");
+                        for(int i=0; i<17; i++){
+                            System.out.println(i+" "+VocabularyTag.fromCode(i));
+                        }
+                        int vocabularyTAG = entrada.nextInt();
+                        entrada.nextLine();
                         //Mnadarlo al documento Vocabulary
                         break;
                     default:
