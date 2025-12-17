@@ -19,11 +19,15 @@ public class Grammar extends Card{
     
     @Override 
     public String toString(){
-        return super.toString()+":"+this.category+":"+this.phrase+":"+
+        return "GRAMMAR:"+super.toString()+":"+this.category+":"+this.phrase+":"+
                 this.answer+":"+this.explanation;
     }
      /*escribir 2 metodos para imprimir la informacion, uno para el 
-    modo quiz y uno para listar*/
+    modo quiz y uno para listar
+
+*/
+    
+    
     
     public GrammarCategory getCategory() {
         return category;

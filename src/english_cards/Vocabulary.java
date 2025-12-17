@@ -28,7 +28,7 @@ public class Vocabulary extends Card{
     
     @Override 
     public String toString(){
-        return super.toString()+":"+this.category+":"+this.topic+":"+
+        return "VOCAB:"+super.toString()+":"+this.category+":"+this.topic+":"+
                 this.use+":"+this.word+":"+this.translation+":"+this.meaning+":"+
                 this.example;
     }
