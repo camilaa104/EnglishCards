@@ -1,0 +1,1 @@
+GRAMMAR:1:A1:verb to be:PRESENT_SIMPLE:I __ happy:am:En el present simple con verbo to be, este se conjuga como ´am´ junto al pronombre I

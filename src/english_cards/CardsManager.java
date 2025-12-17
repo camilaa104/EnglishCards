@@ -1,18 +1,112 @@
 
 package english_cards;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class CardsManager{
-   private final List<Card> tarjetas;
+   private final List<Card> cards;
    private int contador;
    
     public CardsManager(){
-       this.tarjetas = new ArrayList();
+       this.cards = new ArrayList();
        this.contador = 0;   
     }
+ 
+    public void addVocabularyCard(Level level, String clue,
+            VocabularyCategory category, VocabularyTag topic, 
+            UseTag use, String word, String translation,
+            String meaning, String example ){
+        this.contador++;
+        Vocabulary card = new Vocabulary(this.contador, level, clue, category, topic, use, word, translation, meaning, example);
+        cards.add(card);
+    }
     
+    public void addGrammarCard(Level level, String clue, 
+            GrammarCategory category, String phrase, 
+            String answer, String explanation){
+        this.contador++;
+        Grammar card = new Grammar(this.contador, level, clue, category, phrase, answer, explanation);
+        cards.add(card);
+    }
+    
+    public Card buscar(int reference){
+        for(Card c : this.cards){
+            if(c.getReference()== reference)
+                return c;
+        }
+       return null;
+    }
+   
+  //crear los metodos de listar vocabulary, grammar o todos 
+    
+    public void eliminar(int reference){
+        Iterator<Card> it = cards.iterator();
+        while(it.hasNext()){
+            if(it.next().getReference() == reference){
+               it.remove();
+               break;
+            }
+        }
+    }
+    
+    public void cargarDesdeArchivo() {
+    try (BufferedReader br = new BufferedReader(new FileReader("cards.txt"))) {
+        String line;
+        while ((line = br.readLine()) != null) {
+            Card card = CardFactory.fromLine(line);
+            cards.add(card);
+            contador = Math.max(contador, card.getReference());
+        }
+    } catch (IOException e) {
+        System.out.println("Archivo no encontrado, iniciando vacío");
+    }
+}
+    public class CardFactory {
+    public static Card fromLine(String line) {
+        String[] parts = line.split(":");
+
+        switch (parts[0]) {
+            case "VOCAB" -> {
+                return new Vocabulary(
+                        Integer.parseInt(parts[1]),
+                        Level.valueOf(parts[2]),
+                        parts[3],
+                        VocabularyCategory.valueOf(parts[4]),
+                        VocabularyTag.valueOf(parts[5]),
+                        UseTag.valueOf(parts[6]),
+                        parts[7], parts[8], parts[9], parts[10]
+                );
+            }
+            case "GRAMMAR" -> {
+                return new Grammar(
+                        Integer.parseInt(parts[1]),
+                        Level.valueOf(parts[2]),
+                        parts[3],
+                        GrammarCategory.valueOf(parts[4]),
+                        parts[5], parts[6], parts[7]
+                );
+            }
+        }
+        return null;
+    }
+}
+    public void guardarEnArchivo() {
+    try (PrintWriter pw = new PrintWriter(new FileWriter("cards.txt"))) {
+        for (Card c : cards) {
+            pw.println(c.toString());
+        }
+    } catch (IOException e) {
+        System.out.println(e.getMessage());
+    }
+}
+
    /* crear el agregar, tambien el metodo de buscar por referencia,
    para editar y eliminar, y no se como gestionar que editar depende de la categoria, 
    yo creo que tocara mas bien que entren dos numeros, uno se refiere al tipo de tarjeta, 

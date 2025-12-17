@@ -6,100 +6,58 @@ public class CardsDemo {
 
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
-        System.out.println("Buenas, selesccione el numero de lo que desea realizar:");
-        System.out.println(" --Menu--\n 1)Agregar\n 2)Editar\n 3)Eliminar\n 4)Listar\n 5)Practicar\n 6)Salir");
+        CardsManager manager = new CardsManager();
+        manager.cargarDesdeArchivo();
+        System.out.println("Bienvenido a EnglishCards!!, su espacio de aprendizaje de ingles con "
+                + "flashcards\n ¿Qué desea realizar? Ingrese el numero porfavor:");
+        System.out.println(" --Menu--\n 1)Agregar\n 2)Editar\n 3)Eliminar\n 4)Listar\n 5)Practicar\n"
+                + " 6)Salir");//seria buena idea agregar uno como buscar que te imprima toda la info de solo una tarjeta
         int menu = entrada.nextInt();
         entrada.nextLine();
         while(menu != 6){
             switch (menu) {
             case 1: //Agregar
-                System.out.println("Seleccione a cual desea agregar\n 1)Grammar\n 2)Vocabulary\n Preciona cualquier otro numero para regresar al menu");
+                System.out.println(" ¿Qué tipo de carta desea agregar? Ingrese el numero porfavor:\n"
+                        + " 1)Grammar\n 2)Vocabulary\n Ingrese cualquier otro numero para "
+                        + "regresar al menu...");
                 int agregar = entrada.nextInt();
                 entrada.nextLine();
                 switch(agregar){
-                    case 1: //Grammar
-                        System.out.println("Seleccione el numero de la categoria de gramatica que desea agregar");
-                        for(int i=1; i<=18;i++){
-                            System.out.println(i+" "+GrammarCategory.fromCode(i));
-                        }
-                        int categoriaG = entrada.nextInt();
-                        entrada.nextLine();
-                        System.out.println("Escribe la frase: ");
-                        String fraseG = entrada.nextLine();
-                        System.out.println("Escribe la respuesta: ");
-                        String respuestaG = entrada.nextLine();
-                        System.out.println("Escribe la explicacion: ");
-                        String explicacionG = entrada.nextLine();
-                        System.out.println("Selecciona el numero del nivel que deseas agregar");
-                        for(int i=1; i<=6; i++){
-                            System.out.println(i+" "+Level.fromCode(i));
-                        }
-                        String nivelG = entrada.nextLine();
-                        System.out.println("Escribe la pista: ");
-                        String pistaG = entrada.nextLine();
-                        //Mnadarlo al documento Grammar
+                    case 1:
+                        agregarGrammar(entrada, manager);
                         break;
-                    case 2: // Vocabulary
-                        System.out.println("Seleccione el numero de la categoria que desea agregar");
-                        for(int i=1; i<=10; i++){
-                            System.out.println(i+" "+VocabularyCategory.fromCode(i));
-                        }
-                        int categoriaV = entrada.nextInt();
-                        entrada.nextLine();
-                        System.out.println("Escribe la frase: ");
-                        String fraseV = entrada.nextLine();
-                        System.out.println("Escribe la respuesta: ");
-                        String respuestaV = entrada.nextLine();
-                        System.out.println("Escribe la explicacion: ");
-                        String explicacionV = entrada.nextLine();
-                        System.out.println("Escribe la pista: ");
-                        String pistaV = entrada.nextLine();
-                        System.out.println("Seleccione el numero del nivel que desea agregar");
-                        for(int i=1; i<6; i++){
-                            System.out.println(i+" "+Level.fromCode(i));
-                        }
-                        int nivelV = entrada.nextInt();
-                        entrada.nextLine();
-                        System.out.println("Sleccione el numero del tag general que desea agregar");
-                        for(int i=1; i<6; i++){
-                            System.out.println(i+" "+UseTag.fromCode(i));
-                        }
-                        int useTag = entrada.nextInt();
-                        entrada.nextLine();
-                        System.out.println("Seleccione el numero del tag especifico que desea agregar");
-                        for(int i=0; i<17; i++){
-                            System.out.println(i+" "+VocabularyTag.fromCode(i));
-                        }
-                        int vocabularyTAG = entrada.nextInt();
-                        entrada.nextLine();
-                        //Mnadarlo al documento Vocabulary
+                    case 2: 
+                        agregarVocabulary(entrada, manager);
                         break;
                     default:
                         break;
                 }
                break;
             case 2: //editar
-                System.out.println("Agrege la referencia de la targeta a editar (si desea regresar al menu, ingrese 1234): ");
+                System.out.println("Agrege la referencia de la targeta a editar "
+                        + "(si desea regresar al menu, ingrese -1): ");
                 int referenciaEd = entrada.nextInt();
                 entrada.nextLine();
-                if(referenciaEd == 1234){
+                if(referenciaEd == -1){
                     break;
                 } else{
-                    // mandar referencia al documento y editarlo
+                    // mandar referencia al documento y editarlo, me imagino que habra que hacer metodos externos
                     break;
                 }
             case 3: //eliminar
-                System.out.println("Agrege la referencia a la targeta a eliminar (si desea regresar al menu, ingrese 1234): ");
-                int referenciaEl = entrada.nextInt();
+                System.out.println("Agrege la referencia a la targeta a eliminar "
+                        + "(si desea regresar al menu, ingrese -1): ");
+                int deleteRef = entrada.nextInt();
                 entrada.nextLine();
-                if(referenciaEl == 1234){
+                if(deleteRef == -1){
                     break;
                 } else{
-                    // mandar referencia al documento y eliminarlo
+                    manager.eliminar(deleteRef);
                     break;
                 }
             case 4: //Listar
-                System.out.println("Seleccione a cual desea listar\n 1)Grammar\n 2)Vocabulary\n 3)Todos\n Preciona cualquier otro numero para regresar al menu");
+                System.out.println("Seleccione a cual desea listar\n 1)Grammar\n 2)Vocabulary\n "
+                        + "3)Todos\n Presiona cualquier otro numero para regresar al menu");
                 int Listar = entrada.nextInt();
                 entrada.nextLine();
                 switch(Listar){
@@ -117,7 +75,8 @@ public class CardsDemo {
                 }
                 break;
             case 5: //Practicar
-                System.out.println("Seleccione a cual deseas practicar\n 1)Grammar\n 2)Vocabulary\n 3)Aleatorio\n Preciona cualquier numero apra regresar al menu");
+                System.out.println("Seleccione a cual deseas practicar\n "
+                        + "1)Grammar\n 2)Vocabulary\n 3)Aleatorio\n Preciona cualquier numero apra regresar al menu");
                 int Practicar = entrada.nextInt();
                 entrada.nextLine();
                 switch(Practicar){
@@ -144,5 +103,91 @@ public class CardsDemo {
             menu = entrada.nextInt();
             entrada.nextLine();
         }
+        manager.guardarEnArchivo();
     }
+    
+    private static void agregarGrammar(Scanner entrada, CardsManager manager) {
+    System.out.println("¿A qué categoría pertenece?");
+    for (GrammarCategory g : GrammarCategory.values()) {
+        System.out.println(g.getCode() + ". " + g.name());
+    }
+    int categoryG = entrada.nextInt();
+    entrada.nextLine();
+
+    System.out.println("Escribe la frase:");
+    String phrase = entrada.nextLine();
+
+    System.out.println("Escribe la respuesta:");
+    String answer = entrada.nextLine();
+
+    System.out.println("Escribe la explicación:");
+    String explanation = entrada.nextLine();
+
+    System.out.println("Selecciona el nivel:");
+    for (Level l : Level.values()) {
+        System.out.println(l.getCode() + ". " + l.name());
+    }
+    int level = entrada.nextInt();
+    entrada.nextLine();
+
+    System.out.println("Escribe la pista:");
+    String clue = entrada.nextLine();
+
+    manager.addGrammarCard(
+        Level.fromCode(level),
+        clue,
+        GrammarCategory.fromCode(categoryG),
+        phrase,
+        answer,
+        explanation
+    );
+}
+    private static void agregarVocabulary(Scanner entrada, CardsManager manager){
+        System.out.println("Seleccione el numero de la categoria "
+                            + "de Vocabulario que desea agregar");
+        for(VocabularyCategory Vcategory : VocabularyCategory.values()){
+            System.out.println(Vcategory.getCode()+". "+Vcategory.name());
+        }
+        int categoryV = entrada.nextInt();
+        entrada.nextLine();
+        System.out.println("Escribe la palabra: ");
+        String word = entrada.nextLine();
+        System.out.println("Escribe la traduccion (es decir, la plabra en español): ");
+        String translation = entrada.nextLine();
+        System.out.println("Escribe el significado (como la descripcion en ingles): ");
+        String meaning = entrada.nextLine();
+        System.out.println("Escribe un ejemplo en el que se use esa palabra: ");
+        String example = entrada.nextLine();
+        System.out.println("Escribe la pista: ");
+        String clueV = entrada.nextLine();
+        System.out.println("Seleccione el nivel");
+        for(Level l: Level.values()){
+            System.out.println(l.getCode()+". "+l.name());
+        }
+        int nivelV = entrada.nextInt();
+        entrada.nextLine();
+        System.out.println("Seleccione uso de la palabra");
+        for(UseTag use: UseTag.values()){
+            System.out.println(use.getCode()+". "+use.name());
+        }
+        int useTag = entrada.nextInt();
+        entrada.nextLine();
+        System.out.println("Seleccione el numero del tema");
+        for(VocabularyTag topic: VocabularyTag.values()){
+            System.out.println(topic.getCode()+". "+topic.name());
+        }
+        int tagV = entrada.nextInt();
+        entrada.nextLine();
+        manager.addVocabularyCard(
+                Level.fromCode(nivelV), 
+                clueV, 
+                VocabularyCategory.fromCode(categoryV),
+                VocabularyTag.fromCode(tagV),
+                UseTag.fromCode(useTag), 
+                word, 
+                translation, 
+                meaning, 
+                example);
+    }
+
 }
