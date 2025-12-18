@@ -26,6 +26,7 @@ public class CardsManager{
         this.contador++;
         Vocabulary card = new Vocabulary(this.contador, level, clue, category, topic, use, word, translation, meaning, example);
         cards.add(card);
+        guardarEnArchivo();
     }
     
     public void addGrammarCard(Level level, String clue, 
@@ -34,6 +35,7 @@ public class CardsManager{
         this.contador++;
         Grammar card = new Grammar(this.contador, level, clue, category, phrase, answer, explanation);
         cards.add(card);
+        guardarEnArchivo();
     }
     
     public Card buscar(int reference){
@@ -68,15 +70,17 @@ public class CardsManager{
         }
     }
        
-    public void eliminar(int reference){
-        Iterator<Card> it = cards.iterator();
-        while(it.hasNext()){
-            if(it.next().getReference() == reference){
-               it.remove();
-               break;
-            }
+    public boolean eliminar(int reference) {
+    Iterator<Card> it = cards.iterator();
+    while (it.hasNext()) {
+        if (it.next().getReference() == reference) {
+            it.remove();
+            guardarEnArchivo();
+            return true;   
         }
     }
+    return false;
+}
     
     public void cargarDesdeArchivo() {
     try (BufferedReader br = new BufferedReader(new FileReader("cards.txt"))) {

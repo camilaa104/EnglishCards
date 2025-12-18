@@ -40,12 +40,19 @@ public class CardsDemo {
 
                 case 3 -> {
                     int ref = leerEntero(sc, "Referencia a eliminar (-1 para cancelar): ");
-                    if (ref != -1) manager.eliminar(ref);
+                    if (ref != -1) {
+                        boolean eliminado = manager.eliminar(ref);
+                        if (eliminado) {
+                            System.out.println("Tarjeta eliminada correctamente.");
+                        } else {
+                            System.out.println("No se encontró una tarjeta con esa referencia.");
+                        }
+                    }
                 }
 
                 case 4 -> listar(sc, manager);
 
-                case 5 -> System.out.println("Modo práctica (pendiente de implementar)");
+                case 5 -> System.out.println("Modo práctica (pendiente de implementar)"); //esto faltaa
 
                 case 6 -> {
                     int ref = leerEntero(sc, "Ingrese la referencia: ");
@@ -115,7 +122,7 @@ public class CardsDemo {
 
         if (card instanceof Grammar g) editarGrammar(g, sc);
         else if (card instanceof Vocabulary v) editarVocabulary(v, sc);
-
+        manager.guardarEnArchivo();
         return true;
     }
 
@@ -170,6 +177,9 @@ public class CardsDemo {
             case 9 -> v.setExample(pedirTexto(sc, "Nuevo ejemplo: "));
         }
     }
+
+    
+   
 
     // ================= LISTAR =================
 
