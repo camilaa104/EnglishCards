@@ -62,13 +62,13 @@ public class CardsDemo {
                 entrada.nextLine();
                 switch(Listar){
                     case 1: //Grammar
-                        //Listar tarjetas de gramatica
+                        manager.ListarGrammar();
                         break;
                     case 2: // Vocabulary
-                        //Listar tarjetas de vocabulario
+                        manager.ListarVocab();
                         break;
                     case 3: //Todos
-                        //Listar todas las tarjetas
+                        manager.ListarTodos();
                         break;
                     default:
                         break;

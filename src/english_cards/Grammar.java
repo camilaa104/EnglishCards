@@ -9,7 +9,6 @@ public class Grammar extends Card{
     public Grammar(int reference, Level level, String clue, 
             GrammarCategory category, String phrase, 
             String answer, String explanation) {
-        
         super(reference, level, clue);
         this.category = category;
         this.phrase = phrase;
@@ -23,11 +22,7 @@ public class Grammar extends Card{
                 this.answer+":"+this.explanation;
     }
      /*escribir 2 metodos para imprimir la informacion, uno para el 
-    modo quiz y uno para listar
-
-*/
-    
-    
+    modo quiz y uno para listar*/ 
     
     public GrammarCategory getCategory() {
         return category;

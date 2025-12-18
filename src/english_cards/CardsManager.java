@@ -43,6 +43,50 @@ public class CardsManager{
         }
        return null;
     }
+    
+    public void ListarGrammar(){
+        try (BufferedReader br = new BufferedReader(new FileReader("cards.txt"))){
+            String line;
+            while((line = br.readLine())!= null){
+                Card card = fromLine(line);
+                if(card instanceof Grammar grammar){
+                    System.out.println(grammar.toString());
+                }
+            }
+        } catch(IOException e){
+            System.out.println("Archivo no encontrado");
+        }
+    }
+    
+    public void ListarVocab(){
+        try(BufferedReader br = new BufferedReader(new FileReader("cards.txt"))){
+            String Line;
+            while((Line = br.readLine())!= null){
+                Card card = fromLine(Line);
+                if(card instanceof Vocabulary vocab){
+                    System.out.println(vocab.toString());
+                }
+            }
+        } catch (IOException e){
+            System.out.println("Archivo no valido");
+        }
+    }
+    
+    public void ListarTodos(){
+        try(BufferedReader br = new BufferedReader(new FileReader("carsds.txt"))){
+            String Line;
+            while((Line = br.readLine()) != null){
+                Card card = fromLine(Line);
+                if(card instanceof Grammar grammar){
+                    System.out.println(grammar.toString());
+                } else if(card instanceof Vocabulary vocab){
+                    System.out.println(vocab.toString());
+                }
+            }
+        }catch (IOException e){
+            System.out.println("Archivo no encontrado");
+        }
+    }
    
   //crear los metodos de listar vocabulary, grammar o todos 
     
@@ -60,18 +104,17 @@ public class CardsManager{
     try (BufferedReader br = new BufferedReader(new FileReader("cards.txt"))) {
         String line;
         while ((line = br.readLine()) != null) {
-            Card card = CardFactory.fromLine(line);
+            Card card = fromLine(line);
             cards.add(card);
-            contador = Math.max(contador, card.getReference());
+            this.contador = Math.max(this.contador, card.getReference());
         }
     } catch (IOException e) {
         System.out.println("Archivo no encontrado, iniciando vacío");
     }
 }
-    public class CardFactory {
     public static Card fromLine(String line) {
         String[] parts = line.split(":");
-
+        
         switch (parts[0]) {
             case "VOCAB" -> {
                 return new Vocabulary(
@@ -96,7 +139,7 @@ public class CardsManager{
         }
         return null;
     }
-}
+    
     public void guardarEnArchivo() {
     try (PrintWriter pw = new PrintWriter(new FileWriter("cards.txt"))) {
         for (Card c : cards) {
