@@ -32,6 +32,12 @@ public class Vocabulary extends Card{
                 this.use+":"+this.word+":"+this.translation+":"+this.meaning+":"+
                 this.example;
     }
+    
+    public String toStringListarVocab(){
+        return "\nLevel: "+super.getLevel()+"\n"+this.category+"\n Topic: "+this.topic
+                +"\n\n Word: "+this.word+"\n Traslation: "+this.translation+"\n meaning: "+this.meaning
+                +"\n\n Use: "+this.use+"\n Example: "+this.example+"\n Clue: "+super.getClue();
+    }
     /*escribir 3 metodos para imprimir la informacion, uno para cada 
     modo de quiz y uno para listar*/ 
     

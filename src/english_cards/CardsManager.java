@@ -45,12 +45,17 @@ public class CardsManager{
     }
     
     public void ListarGrammar(){
+        int i = 1;
         try (BufferedReader br = new BufferedReader(new FileReader("cards.txt"))){
             String line;
             while((line = br.readLine())!= null){
                 Card card = fromLine(line);
+                System.out.println("--------------------");
+                System.out.println("Grammar");
                 if(card instanceof Grammar grammar){
-                    System.out.println(grammar.toString());
+                    System.out.println(i +") "+ grammar.toStringListarGrammar());
+                    System.out.println("--------------------");
+                    i++;
                 }
             }
         } catch(IOException e){
@@ -59,12 +64,16 @@ public class CardsManager{
     }
     
     public void ListarVocab(){
+        int i = 1;
         try(BufferedReader br = new BufferedReader(new FileReader("cards.txt"))){
             String Line;
             while((Line = br.readLine())!= null){
                 Card card = fromLine(Line);
+                System.out.println("--------------------");
                 if(card instanceof Vocabulary vocab){
-                    System.out.println(vocab.toString());
+                    System.out.println(i +") "+ vocab.toStringListarVocab());
+                    System.out.println("--------------------");
+                    i++;
                 }
             }
         } catch (IOException e){
@@ -73,14 +82,20 @@ public class CardsManager{
     }
     
     public void ListarTodos(){
+        int i =1;
         try(BufferedReader br = new BufferedReader(new FileReader("carsds.txt"))){
             String Line;
             while((Line = br.readLine()) != null){
                 Card card = fromLine(Line);
+                System.out.println("--------------------");
                 if(card instanceof Grammar grammar){
-                    System.out.println(grammar.toString());
+                    System.out.println(i +") "+ grammar.toStringListarGrammar());
+                    System.out.println("--------------------");
+                    i++;
                 } else if(card instanceof Vocabulary vocab){
-                    System.out.println(vocab.toString());
+                    System.out.println(i +") "+vocab.toStringListarVocab());
+                    System.out.println("--------------------");
+                    i++;
                 }
             }
         }catch (IOException e){
