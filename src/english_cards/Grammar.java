@@ -19,8 +19,9 @@ public class Grammar extends Card{
     @Override 
     public String toString(){
         return "GRAMMAR:"+super.toString()+":"+this.category+":"+this.phrase+":"+
-                this.answer+":"+this.explanation; //aqui no falta la clave?
+                this.answer+":"+this.explanation;
     }
+    
     @Override
     public String toStringList(){
         return "\nLevel: "+super.getLevel()+"\n"+this.category+"\n\n Phrase: "+this.phrase+"\n\n Answer: "

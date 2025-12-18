@@ -2,8 +2,8 @@
 package english_cards;
 
 public enum UseTag implements CodeEnum {
-    REGULAR(5), 
-    IRREGULAR(6);
+    REGULAR(1), 
+    IRREGULAR(2);
     
     private final int code;
 

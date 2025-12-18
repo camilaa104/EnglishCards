@@ -16,6 +16,7 @@ public class Card{
     public String toString(){
         return ""+this.reference+":"+this.level+":"+this.clue;
     }
+    
     public String toStringList(){
         return "";
     }

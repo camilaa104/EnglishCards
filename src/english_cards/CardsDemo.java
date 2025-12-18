@@ -6,7 +6,7 @@ import java.util.function.IntFunction;
 public class CardsDemo {
 
     public static void main(String[] args) {
-
+        
         Scanner sc = new Scanner(System.in);
         CardsManager manager = new CardsManager();
         manager.cargarDesdeArchivo();

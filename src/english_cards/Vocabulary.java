@@ -32,6 +32,7 @@ public class Vocabulary extends Card{
                 this.use+":"+this.word+":"+this.translation+":"+this.meaning+":"+
                 this.example;
     }
+    
     @Override
     public String toStringList(){
         return "\nLevel: "+super.getLevel()+"\n"+this.category+"\n Topic: "+this.topic

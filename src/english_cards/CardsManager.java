@@ -52,7 +52,7 @@ public class CardsManager{
                     System.out.println(grammar.toStringList());
                     System.out.println("--------------------");
                 }
-      }
+        }
     }
     
     public void ListarVocab(){
@@ -61,7 +61,7 @@ public class CardsManager{
                     System.out.println(vocabulary.toStringList());
                     System.out.println("--------------------");
                 }
-      }
+        }
     }
     
     public void ListarTodos(){
