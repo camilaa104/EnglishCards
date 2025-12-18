@@ -70,6 +70,7 @@ public class CardsManager{
             while((Line = br.readLine())!= null){
                 Card card = fromLine(Line);
                 System.out.println("--------------------");
+                System.out.println("Vocabulary");
                 if(card instanceof Vocabulary vocab){
                     System.out.println(i +") "+ vocab.toStringListarVocab());
                     System.out.println("--------------------");
