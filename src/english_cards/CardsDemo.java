@@ -1,193 +1,225 @@
 package english_cards;
 
 import java.util.Scanner;
+import java.util.function.IntFunction;
 
 public class CardsDemo {
 
     public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
+
+        Scanner sc = new Scanner(System.in);
         CardsManager manager = new CardsManager();
         manager.cargarDesdeArchivo();
-        System.out.println("Bienvenido a EnglishCards!!, su espacio de aprendizaje de ingles con "
-                + "flashcards\n ¿Qué desea realizar? Ingrese el numero porfavor:");
-        System.out.println(" --Menu--\n 1)Agregar\n 2)Editar\n 3)Eliminar\n 4)Listar\n 5)Practicar\n"
-                + " 6)Salir");//seria buena idea agregar uno como buscar que te imprima toda la info de solo una tarjeta
-        int menu = entrada.nextInt();
-        entrada.nextLine();
-        while(menu != 6){
+
+        while (true) {
+            System.out.println("""
+                -- MENU --
+                1) Agregar tarjeta
+                2) Editar tarjeta
+                3) Eliminar tarjeta
+                4) Listar tarjetas
+                5) Practicar
+                6) Buscar tarjeta por referencia
+                7) Salir
+                """);
+
+            int menu = leerEntero(sc, "Seleccione una opción: ");
+
             switch (menu) {
-            case 1: //Agregar
-                System.out.println(" ¿Qué tipo de carta desea agregar? Ingrese el numero porfavor:\n"
-                        + " 1)Grammar\n 2)Vocabulary\n Ingrese cualquier otro numero para "
-                        + "regresar al menu...");
-                int agregar = entrada.nextInt();
-                entrada.nextLine();
-                switch(agregar){
-                    case 1:
-                        agregarGrammar(entrada, manager);
-                        break;
-                    case 2: 
-                        agregarVocabulary(entrada, manager);
-                        break;
-                    default:
-                        break;
+
+                case 1 -> agregar(sc, manager);
+
+                case 2 -> {
+                    int ref = leerEntero(sc, "Referencia a editar (-1 para cancelar): ");
+                    if (ref != -1 && editar(ref, sc, manager)) {
+                        System.out.println("Carta editada con éxito.");
+                    } else {
+                        System.out.println("No se pudo editar la carta.");
+                    }
                 }
-               break;
-            case 2: //editar
-                System.out.println("Agrege la referencia de la targeta a editar "
-                        + "(si desea regresar al menu, ingrese -1): ");
-                int referenciaEd = entrada.nextInt();
-                entrada.nextLine();
-                if(referenciaEd == -1){
-                    break;
-                } else{
-                    // mandar referencia al documento y editarlo, me imagino que habra que hacer metodos externos
-                    break;
+
+                case 3 -> {
+                    int ref = leerEntero(sc, "Referencia a eliminar (-1 para cancelar): ");
+                    if (ref != -1) manager.eliminar(ref);
                 }
-            case 3: //eliminar
-                System.out.println("Agrege la referencia a la targeta a eliminar "
-                        + "(si desea regresar al menu, ingrese -1): ");
-                int deleteRef = entrada.nextInt();
-                entrada.nextLine();
-                if(deleteRef == -1){
-                    break;
-                } else{
-                    manager.eliminar(deleteRef);
-                    break;
+
+                case 4 -> listar(sc, manager);
+
+                case 5 -> System.out.println("Modo práctica (pendiente de implementar)");
+
+                case 6 -> {
+                    int ref = leerEntero(sc, "Ingrese la referencia: ");
+                    System.out.println(manager.buscar(ref).toStringList());
                 }
-            case 4: //Listar
-                System.out.println("Seleccione a cual desea listar\n 1)Grammar\n 2)Vocabulary\n "
-                        + "3)Todos\n Presiona cualquier otro numero para regresar al menu");
-                int Listar = entrada.nextInt();
-                entrada.nextLine();
-                switch(Listar){
-                    case 1: //Grammar
-                        manager.ListarGrammar();
-                        break;
-                    case 2: // Vocabulary
-                        manager.ListarVocab();
-                        break;
-                    case 3: //Todos
-                        manager.ListarTodos();
-                        break;
-                    default:
-                        break;
+
+                case 7 -> {
+                    manager.guardarEnArchivo();
+                    System.out.println("Datos guardados. ¡Hasta luego!");
+                    return;
                 }
-                break;
-            case 5: //Practicar
-                System.out.println("Seleccione a cual deseas practicar\n "
-                        + "1)Grammar\n 2)Vocabulary\n 3)Aleatorio\n Preciona cualquier numero apra regresar al menu");
-                int Practicar = entrada.nextInt();
-                entrada.nextLine();
-                switch(Practicar){
-                    case 1: //Grammar
-                        //Listar tarjetas de gramatica
-                        break;
-                    case 2: // Vocabulary
-                        //Listar tarjetas de vocabulario
-                        break;
-                    case 3: // Aleatorio
-                        //Practicar con todas las tarjetas
-                        break;
-                    default:
-                        break;
-                }
-                break;
-            default:
-                System.out.println("Porfa selecciona una obcion valida");
-                menu = entrada.nextInt();
-                entrada.nextLine();
-                break;
+
+                default -> System.out.println("Opción inválida.");
             }
-            System.out.println("--Menu--\n 1)Agregar\n 2)Editar\n 3)Eliminar\n 4)Listar\n 5)Practicar\n 6)Salir");
-            menu = entrada.nextInt();
-            entrada.nextLine();
         }
-        manager.guardarEnArchivo();
-    }
-    
-    private static void agregarGrammar(Scanner entrada, CardsManager manager) {
-    System.out.println("¿A qué categoría pertenece?");
-    for (GrammarCategory g : GrammarCategory.values()) {
-        System.out.println(g.getCode() + ". " + g.name());
-    }
-    int categoryG = entrada.nextInt();
-    entrada.nextLine();
-
-    System.out.println("Escribe la frase:");
-    String phrase = entrada.nextLine();
-
-    System.out.println("Escribe la respuesta:");
-    String answer = entrada.nextLine();
-
-    System.out.println("Escribe la explicación:");
-    String explanation = entrada.nextLine();
-
-    System.out.println("Selecciona el nivel:");
-    for (Level l : Level.values()) {
-        System.out.println(l.getCode() + ". " + l.name());
-    }
-    int level = entrada.nextInt();
-    entrada.nextLine();
-
-    System.out.println("Escribe la pista:");
-    String clue = entrada.nextLine();
-
-    manager.addGrammarCard(
-        Level.fromCode(level),
-        clue,
-        GrammarCategory.fromCode(categoryG),
-        phrase,
-        answer,
-        explanation
-    );
-}
-    private static void agregarVocabulary(Scanner entrada, CardsManager manager){
-        System.out.println("Seleccione el numero de la categoria "
-                            + "de Vocabulario que desea agregar");
-        for(VocabularyCategory Vcategory : VocabularyCategory.values()){
-            System.out.println(Vcategory.getCode()+". "+Vcategory.name());
-        }
-        int categoryV = entrada.nextInt();
-        entrada.nextLine();
-        System.out.println("Escribe la palabra: ");
-        String word = entrada.nextLine();
-        System.out.println("Escribe la traduccion (es decir, la plabra en español): ");
-        String translation = entrada.nextLine();
-        System.out.println("Escribe el significado (como la descripcion en ingles): ");
-        String meaning = entrada.nextLine();
-        System.out.println("Escribe un ejemplo en el que se use esa palabra: ");
-        String example = entrada.nextLine();
-        System.out.println("Escribe la pista: ");
-        String clueV = entrada.nextLine();
-        System.out.println("Seleccione el nivel");
-        for(Level l: Level.values()){
-            System.out.println(l.getCode()+". "+l.name());
-        }
-        int nivelV = entrada.nextInt();
-        entrada.nextLine();
-        System.out.println("Seleccione uso de la palabra");
-        for(UseTag use: UseTag.values()){
-            System.out.println(use.getCode()+". "+use.name());
-        }
-        int useTag = entrada.nextInt();
-        entrada.nextLine();
-        System.out.println("Seleccione el numero del tema");
-        for(VocabularyTag topic: VocabularyTag.values()){
-            System.out.println(topic.getCode()+". "+topic.name());
-        }
-        int tagV = entrada.nextInt();
-        entrada.nextLine();
-        manager.addVocabularyCard(
-                Level.fromCode(nivelV), 
-                clueV, 
-                VocabularyCategory.fromCode(categoryV),
-                VocabularyTag.fromCode(tagV),
-                UseTag.fromCode(useTag), 
-                word, 
-                translation, 
-                meaning, 
-                example);
     }
 
+    // ================= AGREGAR =================
+
+    private static void agregar(Scanner sc, CardsManager manager) {
+        System.out.println("""
+            ¿Qué tipo de tarjeta desea agregar?
+            1) Grammar
+            2) Vocabulary
+            """);
+
+        int tipo = leerEntero(sc, "Seleccione opción: ");
+
+        if (tipo == 1) agregarGrammar(sc, manager);
+        else if (tipo == 2) agregarVocabulary(sc, manager);
+    }
+
+    private static void agregarGrammar(Scanner sc, CardsManager manager) {
+
+        GrammarCategory category = pedirEnum(sc, GrammarCategory.values(), GrammarCategory::fromCode);
+        String phrase = pedirTexto(sc, "Frase: ");
+        String answer = pedirTexto(sc, "Respuesta: ");
+        String explanation = pedirTexto(sc, "Explicación: ");
+        Level level = pedirEnum(sc, Level.values(), Level::fromCode);
+        String clue = pedirTexto(sc, "Pista: ");
+
+        manager.addGrammarCard(level, clue, category, phrase, answer, explanation);
+    }
+
+    private static void agregarVocabulary(Scanner sc, CardsManager manager) {
+
+        VocabularyCategory category = pedirEnum(sc, VocabularyCategory.values(), VocabularyCategory::fromCode);
+        String word = pedirTexto(sc, "Palabra: ");
+        String translation = pedirTexto(sc, "Traducción: ");
+        String meaning = pedirTexto(sc, "Significado: ");
+        String example = pedirTexto(sc, "Ejemplo: ");
+        String clue = pedirTexto(sc, "Pista: ");
+        Level level = pedirEnum(sc, Level.values(), Level::fromCode);
+        UseTag use = pedirEnum(sc, UseTag.values(), UseTag::fromCode);
+        VocabularyTag topic = pedirEnum(sc, VocabularyTag.values(), VocabularyTag::fromCode);
+
+        manager.addVocabularyCard(level, clue, category, topic, use,
+                word, translation, meaning, example);
+    }
+
+    // ================= EDITAR =================
+
+    private static boolean editar(int reference, Scanner sc, CardsManager manager) {
+
+        Card card = manager.buscar(reference);
+        if (card == null) return false;
+
+        if (card instanceof Grammar g) editarGrammar(g, sc);
+        else if (card instanceof Vocabulary v) editarVocabulary(v, sc);
+
+        return true;
+    }
+
+    private static void editarGrammar(Grammar g, Scanner sc) {
+
+        System.out.println("""
+            1) Nivel
+            2) Pista
+            3) Categoría
+            4) Frase
+            5) Respuesta
+            6) Explicación
+            """);
+
+        int op = leerEntero(sc, "Seleccione opción: ");
+
+        switch (op) {
+            case 1 -> g.setLevel(pedirEnum(sc, Level.values(), Level::fromCode));
+            case 2 -> g.setClue(pedirTexto(sc, "Nueva pista: "));
+            case 3 -> g.setCategory(pedirEnum(sc, GrammarCategory.values(), GrammarCategory::fromCode));
+            case 4 -> g.setPhrase(pedirTexto(sc, "Nueva frase: "));
+            case 5 -> g.setAnswer(pedirTexto(sc, "Nueva respuesta: "));
+            case 6 -> g.setExplanation(pedirTexto(sc, "Nueva explicación: "));
+        }
+    }
+
+    private static void editarVocabulary(Vocabulary v, Scanner sc) {
+
+        System.out.println("""
+            1) Nivel
+            2) Pista
+            3) Categoría
+            4) Tema
+            5) Uso
+            6) Palabra
+            7) Traducción
+            8) Significado
+            9) Ejemplo
+            """);
+
+        int op = leerEntero(sc, "Seleccione opción: ");
+
+        switch (op) {
+            case 1 -> v.setLevel(pedirEnum(sc, Level.values(), Level::fromCode));
+            case 2 -> v.setClue(pedirTexto(sc, "Nueva pista: "));
+            case 3 -> v.setCategory(pedirEnum(sc, VocabularyCategory.values(), VocabularyCategory::fromCode));
+            case 4 -> v.setTopic(pedirEnum(sc, VocabularyTag.values(), VocabularyTag::fromCode));
+            case 5 -> v.setUse(pedirEnum(sc, UseTag.values(), UseTag::fromCode));
+            case 6 -> v.setWord(pedirTexto(sc, "Nueva palabra: "));
+            case 7 -> v.setTranslation(pedirTexto(sc, "Nueva traducción: "));
+            case 8 -> v.setMeaning(pedirTexto(sc, "Nuevo significado: "));
+            case 9 -> v.setExample(pedirTexto(sc, "Nuevo ejemplo: "));
+        }
+    }
+
+    // ================= LISTAR =================
+
+    private static void listar(Scanner sc, CardsManager manager) {
+
+        System.out.println("""
+            1) Grammar
+            2) Vocabulary
+            3) Todas
+            """);
+
+        int op = leerEntero(sc, "Seleccione opción: ");
+
+        if (op == 1) manager.ListarGrammar();
+        else if (op == 2) manager.ListarVocab();
+        else if (op == 3) manager.ListarTodos();
+    }
+
+   // ================= HELPERS =================
+
+    private static String pedirTexto(Scanner sc, String msg) {
+        System.out.print(msg);
+        return sc.nextLine();
+    }
+
+    private static int leerEntero(Scanner sc, String msg) {
+        while (true) {
+            System.out.print(msg);
+            try {
+                return Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Ingrese un número válido.");
+            }
+        }
+    }
+
+    private static <T extends Enum<T> & CodeEnum> T pedirEnum(
+            Scanner sc,
+            T[] values,
+            IntFunction<T> mapper
+    ) {
+        for (T v : values) {
+            System.out.println(v.getCode()+ ". " +v.name());
+        }
+
+        while (true) {
+            int code = leerEntero(sc, "Seleccione opción: ");
+            T result = mapper.apply(code);
+            if (result != null) return result;
+            System.out.println("Opción inválida.");
+        }
+    }
 }

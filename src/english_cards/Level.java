@@ -1,7 +1,7 @@
 
 package english_cards;
 
-public enum Level {
+public enum Level implements CodeEnum {
     A1(1),
     A2(2),
     B1(3),

@@ -1,6 +1,6 @@
 
 package english_cards;
-public enum VocabularyCategory {
+public enum VocabularyCategory implements CodeEnum {
     VERB(1),
     NOUN(2),
     ADJECTIVE(3),

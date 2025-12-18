@@ -1,11 +1,7 @@
 
 package english_cards;
 
-public enum UseTag {
-    FORMAL(1), 
-    INFORMAL(2), 
-    COMMON(3), 
-    UNCOMMON(4), 
+public enum UseTag implements CodeEnum {
     REGULAR(5), 
     IRREGULAR(6);
     

@@ -1,6 +1,6 @@
 package english_cards;
 
-public enum VocabularyTag {
+public enum VocabularyTag implements CodeEnum {
     FOOD(1),
     TRAVEL(2),
     SCHOOL(3),

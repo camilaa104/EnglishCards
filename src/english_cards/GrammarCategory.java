@@ -1,7 +1,7 @@
 
 package english_cards;
 
-public enum GrammarCategory {
+public enum GrammarCategory implements CodeEnum {
     PRESENT_SIMPLE(1),
     PRESENT_CONTINUOUS(2),
     PRESENT_PERFECT(3),

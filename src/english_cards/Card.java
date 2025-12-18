@@ -1,7 +1,7 @@
 
 package english_cards;
 
-public class Card {
+public class Card{
     private int reference;
     private Level level;
     private String clue;
@@ -16,7 +16,9 @@ public class Card {
     public String toString(){
         return ""+this.reference+":"+this.level+":"+this.clue;
     }
-
+    public String toStringList(){
+        return "";
+    }
     public int getReference() {
         return reference;
     }

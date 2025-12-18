@@ -21,8 +21,8 @@ public class Grammar extends Card{
         return "GRAMMAR:"+super.toString()+":"+this.category+":"+this.phrase+":"+
                 this.answer+":"+this.explanation; //aqui no falta la clave?
     }
-    
-    public String toStringListarGrammar(){
+    @Override
+    public String toStringList(){
         return "\nLevel: "+super.getLevel()+"\n"+this.category+"\n\n Phrase: "+this.phrase+"\n\n Answer: "
                 +this.answer+"\n Explanation: "+this.explanation+"\n clue: "+super.getClue();
     }

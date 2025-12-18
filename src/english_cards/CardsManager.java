@@ -45,67 +45,29 @@ public class CardsManager{
     }
     
     public void ListarGrammar(){
-        int i = 1;
-        try (BufferedReader br = new BufferedReader(new FileReader("cards.txt"))){
-            String line;
-            while((line = br.readLine())!= null){
-                Card card = fromLine(line);
-                System.out.println("--------------------");
-                System.out.println("Grammar");
+      for(Card card : cards){
                 if(card instanceof Grammar grammar){
-                    System.out.println(i +") "+ grammar.toStringListarGrammar());
+                    System.out.println(grammar.toStringList());
                     System.out.println("--------------------");
-                    i++;
                 }
-            }
-        } catch(IOException e){
-            System.out.println("Archivo no encontrado");
-        }
+      }
     }
     
     public void ListarVocab(){
-        int i = 1;
-        try(BufferedReader br = new BufferedReader(new FileReader("cards.txt"))){
-            String Line;
-            while((Line = br.readLine())!= null){
-                Card card = fromLine(Line);
-                System.out.println("--------------------");
-                System.out.println("Vocabulary");
-                if(card instanceof Vocabulary vocab){
-                    System.out.println(i +") "+ vocab.toStringListarVocab());
+        for(Card card : cards){
+                if(card instanceof Vocabulary vocabulary){
+                    System.out.println(vocabulary.toStringList());
                     System.out.println("--------------------");
-                    i++;
                 }
-            }
-        } catch (IOException e){
-            System.out.println("Archivo no valido");
-        }
+      }
     }
     
     public void ListarTodos(){
-        int i =1;
-        try(BufferedReader br = new BufferedReader(new FileReader("carsds.txt"))){
-            String Line;
-            while((Line = br.readLine()) != null){
-                Card card = fromLine(Line);
-                System.out.println("--------------------");
-                if(card instanceof Grammar grammar){
-                    System.out.println(i +") "+ grammar.toStringListarGrammar());
-                    System.out.println("--------------------");
-                    i++;
-                } else if(card instanceof Vocabulary vocab){
-                    System.out.println(i +") "+vocab.toStringListarVocab());
-                    System.out.println("--------------------");
-                    i++;
-                }
-            }
-        }catch (IOException e){
-            System.out.println("Archivo no encontrado");
+        for(Card card: cards){
+            System.out.println(card.toStringList());
         }
     }
-   
-  //crear los metodos de listar vocabulary, grammar o todos 
-    
+       
     public void eliminar(int reference){
         Iterator<Card> it = cards.iterator();
         while(it.hasNext()){
@@ -163,16 +125,8 @@ public class CardsManager{
         }
     } catch (IOException e) {
         System.out.println(e.getMessage());
-    }
-}
-
-   /* crear el agregar, tambien el metodo de buscar por referencia,
-   para editar y eliminar, y no se como gestionar que editar depende de la categoria, 
-   yo creo que tocara mas bien que entren dos numeros, uno se refiere al tipo de tarjeta, 
-   el otro al atributo y ahi se decide con ifs y se llama al  mismo método o si se hacen mas metodos pues
-   que sean metodos internos */
-   
-   
+        }
+    }    
 }
     
 
