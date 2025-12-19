@@ -193,9 +193,13 @@ public class CardsDemo {
 
         int op = leerEntero(sc, "Seleccione opción: ");
 
-        if (op == 1) manager.ListarGrammar();
-        else if (op == 2) manager.ListarVocab();
-        else if (op == 3) manager.ListarTodos();
+        switch (op) {
+            case 1 -> manager.ListarGrammar();
+            case 2 -> manager.ListarVocab();
+            case 3 -> manager.ListarTodos();
+            default -> {
+            }
+        }
     }
 
    // ================= HELPERS =================
