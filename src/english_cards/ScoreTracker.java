@@ -1,6 +1,6 @@
 package english_cards;
 
-public class ScoreTraker {
+public class ScoreTracker {
     private int correct;
     private int incorrect;
     private int Score;
