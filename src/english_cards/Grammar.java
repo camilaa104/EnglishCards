@@ -27,6 +27,10 @@ public class Grammar extends Card{
         return "\nLevel: "+super.getLevel()+"\n"+this.category+"\n\n Phrase: "+this.phrase+"\n\n Answer: "
                 +this.answer+"\n Explanation: "+this.explanation+"\n clue: "+super.getClue();
     }
+    
+    public String toStringFillMode(){
+        return "Phrase: "+this.phrase;
+    }
      /*escribir 2 metodos para imprimir la informacion, uno para el 
     modo quiz y uno para listar*/ 
     

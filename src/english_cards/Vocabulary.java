@@ -39,6 +39,14 @@ public class Vocabulary extends Card{
                 +"\n\n Word: "+this.word+"\n Traslation: "+this.translation+"\n meaning: "+this.meaning
                 +"\n\n Use: "+this.use+"\n Example: "+this.example+"\n Clue: "+super.getClue();
     }
+    
+    public String toStringMeaningMode(){
+        return "Meaning of: "+this.word;
+    }
+    
+    public String toStringTraslationMode(){
+        return "Traslation of: "+this.meaning;
+    }
     /*escribir 3 metodos para imprimir la informacion, uno para cada 
     modo de quiz y uno para listar*/ 
     
