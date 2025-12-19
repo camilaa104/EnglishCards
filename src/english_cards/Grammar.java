@@ -28,6 +28,7 @@ public class Grammar extends Card{
                 +this.answer+"\n Explanation: "+this.explanation+"\n clue: "+super.getClue();
     }
     
+    @Override
     public String toStringFillMode(){
         return "Phrase: "+this.phrase;
     }

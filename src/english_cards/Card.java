@@ -20,6 +20,18 @@ public class Card{
     public String toStringList(){
         return "";
     }
+    
+    public String toStringMeaningMode(){
+        return "";
+    }
+    
+    public String toStringTraslationMode(){
+        return "";
+    }
+    
+    public String toStringFillMode(){
+        return "";
+    }
     public int getReference() {
         return reference;
     }

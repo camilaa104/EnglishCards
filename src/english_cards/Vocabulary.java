@@ -40,10 +40,12 @@ public class Vocabulary extends Card{
                 +"\n\n Use: "+this.use+"\n Example: "+this.example+"\n Clue: "+super.getClue();
     }
     
+    @Override
     public String toStringMeaningMode(){
         return "Meaning of: "+this.word;
     }
     
+    @Override
     public String toStringTraslationMode(){
         return "Traslation of: "+this.meaning;
     }
