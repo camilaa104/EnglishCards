@@ -16,7 +16,8 @@ public class VocabMeaningMode implements PracticeMode {
 
         if (answer.equalsIgnoreCase(v.getWord())) {
             System.out.println("Correct!");
-            System.out.println("Example: " + v.getExample());
+            System.out.println("Example: " + v.getExample()+ "\n ----"
+                + "------------------------------------");
             score.correct();
         } else {
             score.incorrect();
@@ -34,14 +35,17 @@ public class VocabMeaningMode implements PracticeMode {
 switch(opt){
 
         case 1 -> {
-            System.out.println("Hint:" + v.getClue());
+            System.out.println("Hint:" + v.getClue()+ "\n ----"
+                + "------------------------------------");
             play(v, sc, score);
         }
         case 2 -> {
-            System.out.println("Answer: " + v.getWord());
-            System.out.println("Example: " + v.getExample());
+            System.out.println("the word is: " + v.getWord());
+            System.out.println("Example: " + v.getExample()+ "\n ----"
+                + "------------------------------------");
         }
-        default -> System.out.println("opcion invalida");
+        default -> System.out.println("opcion invalida\n ----"
+                + "------------------------------------");
     }
 }
      
@@ -51,7 +55,7 @@ switch(opt){
             try {
                 return Integer.parseInt(sc.nextLine());
             } catch (NumberFormatException e) {
-                System.out.println("Ingrese un número válido.");
+                System.out.println("Ingrese un numero valido.\n");
             }
         }
     }

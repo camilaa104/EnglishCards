@@ -17,7 +17,8 @@ public class GrammarFillMode implements PracticeMode{
 
         if (answer.equalsIgnoreCase(g.getAnswer())) {
             System.out.println("Correct!");
-            System.out.println(g.getExplanation());
+            System.out.println(g.getExplanation()+ "\n ----"
+                + "------------------------------------");
             score.correct();
         } else {
            score.incorrect();
@@ -34,14 +35,17 @@ public class GrammarFillMode implements PracticeMode{
     switch(opt){
 
         case 1 -> {
-            System.out.println("Hint:" + g.getClue());
+            System.out.println("Hint:" + g.getClue()+ "\n ----"
+                + "------------------------------------");
             play(g, sc, score);
         }
         case 2 -> {
-            System.out.println("Answer: " + g.getAnswer());
-            System.out.println("Example: " + g.getExplanation());
+            System.out.println("Correct answer: " + g.getAnswer());
+            System.out.println("Explanation: " + g.getExplanation()+"\n ----"
+                + "------------------------------------");
         }
-        default -> System.out.println("opcion invalida");
+        default -> System.out.println("opcion invalida\n ----"
+                + "------------------------------------");
     }
 }
      private static int leerEntero(Scanner sc, String msg) {
@@ -50,7 +54,7 @@ public class GrammarFillMode implements PracticeMode{
             try {
                 return Integer.parseInt(sc.nextLine());
             } catch (NumberFormatException e) {
-                System.out.println("Ingrese un número válido.");
+                System.out.println("Ingrese un numero válido.\n");
             }
         }
     }

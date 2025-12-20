@@ -18,22 +18,21 @@ public class Grammar extends Card{
     
     @Override 
     public String toString(){
-        return "GRAMMAR:"+super.toString()+":"+this.category+":"+this.phrase+":"+
+        return "GRAMMAR"+super.toString()+":"+this.category+":"+this.phrase+":"+
                 this.answer+":"+this.explanation;
     }
     
     @Override
     public String toStringList(){
-        return "\nLevel: "+super.getLevel()+"\n"+this.category+"\n\n Phrase: "+this.phrase+"\n\n Answer: "
-                +this.answer+"\n Explanation: "+this.explanation+"\n clue: "+super.getClue();
+        return super.toStringList()+this.category+"\n\n Phrase: "+this.phrase+"\n\n Answer: "
+                +this.answer+"\n Explanation: "+this.explanation+"\n clue: "+super.getClue()+"\n ----"
+                + "------------------------------------";
     }
     
-    @Override
     public String toStringFillMode(){
-        return "the Phrase is: "+this.phrase+ "\nYour answer is: ";
+        return super.toStringList()+"the Phrase is: "+this.phrase+ "\nYour answer is: ";
     }
-     /*escribir 2 metodos para imprimir la informacion, uno para el 
-    modo quiz y uno para listar*/ 
+
     
     public GrammarCategory getCategory() {
         return category;

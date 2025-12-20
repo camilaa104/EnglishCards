@@ -1,5 +1,6 @@
 package english_cards;
 
+import java.util.List;
 import java.util.Scanner;
 import java.util.function.IntFunction;
 
@@ -23,7 +24,7 @@ public class CardsDemo {
                 7) Salir
                 """);
 
-            int menu = leerEntero(sc, "Seleccione una opción: ");
+            int menu = leerEntero(sc, "Seleccione una opcion: ");
 
             switch (menu) {
 
@@ -45,14 +46,14 @@ public class CardsDemo {
                         if (eliminado) {
                             System.out.println("Tarjeta eliminada correctamente.");
                         } else {
-                            System.out.println("No se encontró una tarjeta con esa referencia.");
+                            System.out.println("No se encontro una tarjeta con esa referencia.");
                         }
                     }
                 }
 
                 case 4 -> listar(sc, manager);
 
-                case 5 -> System.out.println("Modo práctica (pendiente de implementar)"); //esto faltaa
+                case 5 -> practicar(sc, manager);
 
                 case 6 -> {
                     int ref = leerEntero(sc, "Ingrese la referencia: ");
@@ -61,11 +62,11 @@ public class CardsDemo {
 
                 case 7 -> {
                     manager.guardarEnArchivo();
-                    System.out.println("Datos guardados. ¡Hasta luego!");
+                    System.out.println("Datos guardados. Hasta luego!");
                     return;
                 }
 
-                default -> System.out.println("Opción inválida.");
+                default -> System.out.println("Opción invalida.");
             }
         }
     }
@@ -74,12 +75,12 @@ public class CardsDemo {
 
     private static void agregar(Scanner sc, CardsManager manager) {
         System.out.println("""
-            ¿Qué tipo de tarjeta desea agregar?
+            Que tipo de tarjeta desea agregar?
             1) Grammar
             2) Vocabulary
             """);
 
-        int tipo = leerEntero(sc, "Seleccione opción: ");
+        int tipo = leerEntero(sc, "Seleccione una opcion: ");
 
         if (tipo == 1) agregarGrammar(sc, manager);
         else if (tipo == 2) agregarVocabulary(sc, manager);
@@ -90,7 +91,7 @@ public class CardsDemo {
         GrammarCategory category = pedirEnum(sc, GrammarCategory.values(), GrammarCategory::fromCode);
         String phrase = pedirTexto(sc, "Frase: ");
         String answer = pedirTexto(sc, "Respuesta: ");
-        String explanation = pedirTexto(sc, "Explicación: ");
+        String explanation = pedirTexto(sc, "Explicacion: ");
         Level level = pedirEnum(sc, Level.values(), Level::fromCode);
         String clue = pedirTexto(sc, "Pista: ");
 
@@ -101,7 +102,7 @@ public class CardsDemo {
 
         VocabularyCategory category = pedirEnum(sc, VocabularyCategory.values(), VocabularyCategory::fromCode);
         String word = pedirTexto(sc, "Palabra: ");
-        String translation = pedirTexto(sc, "Traducción: ");
+        String translation = pedirTexto(sc, "Traduccion: ");
         String meaning = pedirTexto(sc, "Significado: ");
         String example = pedirTexto(sc, "Ejemplo: ");
         String clue = pedirTexto(sc, "Pista: ");
@@ -131,13 +132,13 @@ public class CardsDemo {
         System.out.println("""
             1) Nivel
             2) Pista
-            3) Categoría
+            3) Categoria
             4) Frase
             5) Respuesta
-            6) Explicación
+            6) Explicacion
             """);
 
-        int op = leerEntero(sc, "Seleccione opción: ");
+        int op = leerEntero(sc, "Seleccione opcion: ");
 
         switch (op) {
             case 1 -> g.setLevel(pedirEnum(sc, Level.values(), Level::fromCode));
@@ -145,7 +146,7 @@ public class CardsDemo {
             case 3 -> g.setCategory(pedirEnum(sc, GrammarCategory.values(), GrammarCategory::fromCode));
             case 4 -> g.setPhrase(pedirTexto(sc, "Nueva frase: "));
             case 5 -> g.setAnswer(pedirTexto(sc, "Nueva respuesta: "));
-            case 6 -> g.setExplanation(pedirTexto(sc, "Nueva explicación: "));
+            case 6 -> g.setExplanation(pedirTexto(sc, "Nueva explicacion: "));
         }
     }
 
@@ -154,7 +155,7 @@ public class CardsDemo {
         System.out.println("""
             1) Nivel
             2) Pista
-            3) Categoría
+            3) Categoria
             4) Tema
             5) Uso
             6) Palabra
@@ -163,7 +164,7 @@ public class CardsDemo {
             9) Ejemplo
             """);
 
-        int op = leerEntero(sc, "Seleccione opción: ");
+        int op = leerEntero(sc, "Seleccione opcion: ");
 
         switch (op) {
             case 1 -> v.setLevel(pedirEnum(sc, Level.values(), Level::fromCode));
@@ -172,7 +173,7 @@ public class CardsDemo {
             case 4 -> v.setTopic(pedirEnum(sc, VocabularyTag.values(), VocabularyTag::fromCode));
             case 5 -> v.setUse(pedirEnum(sc, UseTag.values(), UseTag::fromCode));
             case 6 -> v.setWord(pedirTexto(sc, "Nueva palabra: "));
-            case 7 -> v.setTranslation(pedirTexto(sc, "Nueva traducción: "));
+            case 7 -> v.setTranslation(pedirTexto(sc, "Nueva traduccion: "));
             case 8 -> v.setMeaning(pedirTexto(sc, "Nuevo significado: "));
             case 9 -> v.setExample(pedirTexto(sc, "Nuevo ejemplo: "));
         }
@@ -191,7 +192,7 @@ public class CardsDemo {
             3) Todas
             """);
 
-        int op = leerEntero(sc, "Seleccione opción: ");
+        int op = leerEntero(sc, "Seleccione opcion: ");
 
         switch (op) {
             case 1 -> manager.ListarGrammar();
@@ -201,6 +202,61 @@ public class CardsDemo {
             }
         }
     }
+ // ================= PRACTICA =================
+    private static void practicar(Scanner sc, CardsManager manager) {
+
+    List<Card> cards = manager.getCards();
+
+    List<PracticeMode> modes = List.of(
+            new VocabMeaningMode(),
+            new VocabTranslationMode(),
+            new GrammarFillMode()
+    );
+
+    System.out.println("""
+        -- PRACTICE --
+        1) Vocabulary (meaning)
+        2) Vocabulary (translation)
+        3) Grammar
+        4) Mixed practice
+        """);
+
+    int choice = leerEntero(sc, "Seleccione opcion: ");
+
+    PracticeManager engine = new PracticeManager();
+    int questions = leerEntero(sc, "Cuantas cartas desea responder: ");
+    switch (choice) {
+        case 1 -> engine.startPractice(
+                cards,
+                List.of(modes.get(0)),
+                PracticeType.SINGLE,questions,
+                sc
+        );
+
+        case 2 -> engine.startPractice(
+                cards,
+                List.of(modes.get(1)),
+                PracticeType.SINGLE,questions,
+                sc
+        );
+
+        case 3 -> engine.startPractice(
+                cards,
+                List.of(modes.get(2)),
+                PracticeType.SINGLE,questions, 
+                sc
+        );
+
+        case 4 -> engine.startPractice(
+                cards,
+                modes,
+                PracticeType.MIXED, questions, 
+                sc
+        );
+
+        default -> System.out.println("Opcion invalida.");
+    }
+}
 
    // ================= HELPERS =================
 
@@ -215,7 +271,7 @@ public class CardsDemo {
             try {
                 return Integer.parseInt(sc.nextLine());
             } catch (NumberFormatException e) {
-                System.out.println("Ingrese un número válido.");
+                System.out.println("Ingrese un número valido.");
             }
         }
     }
@@ -230,10 +286,10 @@ public class CardsDemo {
         }
 
         while (true) {
-            int code = leerEntero(sc, "Seleccione opción: ");
+            int code = leerEntero(sc, "Seleccione opcion: ");
             T result = mapper.apply(code);
             if (result != null) return result;
-            System.out.println("Opción inválida.");
+            System.out.println("Opción invalida.");
         }
     }
 }

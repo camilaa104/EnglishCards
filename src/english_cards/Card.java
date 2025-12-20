@@ -14,24 +14,16 @@ public class Card{
     
     @Override
     public String toString(){
-        return ""+this.reference+":"+this.level+":"+this.clue;
+        return ":"+this.reference+":"+this.level+":"+this.clue;
     }
     
     public String toStringList(){
-        return "";
+        return """
+               ----------------------------------------
+               N-"""+this.reference+"   Level: "+this.level+ "\n";
     }
+
     
-    public String toStringMeaningMode(){
-        return "";
-    }
-    
-    public String toStringTraslationMode(){
-        return "";
-    }
-    
-    public String toStringFillMode(){
-        return "";
-    }
     public int getReference() {
         return reference;
     }

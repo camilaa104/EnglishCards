@@ -28,29 +28,26 @@ public class Vocabulary extends Card{
     
     @Override 
     public String toString(){
-        return "VOCAB:"+super.toString()+":"+this.category+":"+this.topic+":"+
+        return "VOCAB"+super.toString()+":"+this.category+":"+this.topic+":"+
                 this.use+":"+this.word+":"+this.translation+":"+this.meaning+":"+
                 this.example;
     }
     
     @Override
     public String toStringList(){
-        return "\nLevel: "+super.getLevel()+"\n"+this.category+"\n Topic: "+this.topic
-                +"\n\n Word: "+this.word+"\n Traslation: "+this.translation+"\n meaning: "+this.meaning
-                +"\n\n Use: "+this.use+"\n Example: "+this.example+"\n Clue: "+super.getClue();
+        return super.toStringList()+this.category+"\n Topic: "+this.topic
+                +"\n\n Word: "+this.word+"\n Translation: "+this.translation+"\n meaning: "+this.meaning
+                +"\n\n Use: "+this.use+"\n Example: "+this.example+"\n Clue: "+super.getClue()+"\n ----"
+                + "------------------------------------";
     }
-    
-    @Override
+
     public String toStringMeaningMode(){
-        return "Meaning of: "+this.word+ "\nYour answer: ";
+        return super.toStringList()+this.category+"\n Topic: "+this.topic+"  Use: "+this.use+"\n\n if the meaning is: "+this.meaning+ "\n, the word is (write your answer): ";
     }
-    
-    @Override
+
     public String toStringTraslationMode(){
-        return "Translate to English: "+this.meaning+ "\nYour answer: ";
+        return super.toStringList()+this.category+"\n Topic: "+this.topic+"  Use: "+this.use+"\n\n Translate to English: "+this.translation+ "\nYour answer: ";
     }
-    /*escribir 3 metodos para imprimir la informacion, uno para cada 
-    modo de quiz y uno para listar*/ 
     
     public VocabularyCategory getCategory() {
         return category;

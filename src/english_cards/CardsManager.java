@@ -47,24 +47,26 @@ public class CardsManager{
     }
     
     public void ListarGrammar(){
+        System.out.println("\n TARJETAS DE GRAMÁTICA \n");
       for(Card card : cards){
                 if(card instanceof Grammar grammar){
                     System.out.println(grammar.toStringList());
-                    System.out.println("--------------------");
+
                 }
         }
     }
     
     public void ListarVocab(){
+        System.out.println("\n TARJETAS DE VOCABULARIO \n");
         for(Card card : cards){
                 if(card instanceof Vocabulary vocabulary){
                     System.out.println(vocabulary.toStringList());
-                    System.out.println("--------------------");
                 }
         }
     }
     
     public void ListarTodos(){
+        System.out.println("\n TODAS LAS TARJETAS \n");
         for(Card card: cards){
             System.out.println(card.toStringList());
         }
@@ -91,7 +93,7 @@ public class CardsManager{
             this.contador = Math.max(this.contador, card.getReference());
         }
     } catch (IOException e) {
-        System.out.println("Archivo no encontrado, iniciando vacío");
+        System.out.println("Archivo no encontrado, iniciando vacío\n");
     }
 }
     public static Card fromLine(String line) {
@@ -130,7 +132,12 @@ public class CardsManager{
     } catch (IOException e) {
         System.out.println(e.getMessage());
         }
-    }    
+    }
+
+    public List<Card> getCards() {
+        return cards;
+    }
+    
 }
     
 
