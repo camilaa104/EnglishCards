@@ -32,7 +32,4 @@ public class ScoreTracker {
     public void setIncorrect(int incorrect) {
         this.incorrect = incorrect;
     }
-    
-    
-    
 }

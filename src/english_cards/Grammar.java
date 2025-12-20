@@ -30,7 +30,7 @@ public class Grammar extends Card{
     
     @Override
     public String toStringFillMode(){
-        return "Phrase: "+this.phrase;
+        return "the Phrase is: "+this.phrase+ "\nYour answer is: ";
     }
      /*escribir 2 metodos para imprimir la informacion, uno para el 
     modo quiz y uno para listar*/ 

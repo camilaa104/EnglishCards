@@ -42,12 +42,12 @@ public class Vocabulary extends Card{
     
     @Override
     public String toStringMeaningMode(){
-        return "Meaning of: "+this.word;
+        return "Meaning of: "+this.word+ "\nYour answer: ";
     }
     
     @Override
     public String toStringTraslationMode(){
-        return "Traslation of: "+this.meaning;
+        return "Translate to English: "+this.meaning+ "\nYour answer: ";
     }
     /*escribir 3 metodos para imprimir la informacion, uno para cada 
     modo de quiz y uno para listar*/ 

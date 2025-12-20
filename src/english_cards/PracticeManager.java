@@ -14,7 +14,7 @@ public class PracticeManager {
         for(Card c: disponibles){
             mode.play(c, sc, score);
         }
-        System.out.println("Finaal Score: + el Score de score");
+        System.out.println("Final Score: " + score.getScore());
     }
     public void startMixedPractice(List<Card> cards, List<PracticeMode> modes, Scanner sc){
         ScoreTracker score = new ScoreTracker();
@@ -24,7 +24,7 @@ public class PracticeManager {
             PracticeMode elegido = elegirModo(compatibles);
             elegido.play(c, sc, score);
         }
-        System.out.println("Final score: ");
+        System.out.println("Final score: " + score.getScore());
     }
     private PracticeMode elegirModo(List<PracticeMode> modos){
         Collections.shuffle(modos);

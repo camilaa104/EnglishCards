@@ -30,7 +30,7 @@ public class VocabTranslationMode implements PracticeMode {
     1) Try again
     2) See answer
     """);
-switch(opt){
+    switch(opt){
 
         case 1 -> {
             System.out.println("Hint:" + v.getClue());
